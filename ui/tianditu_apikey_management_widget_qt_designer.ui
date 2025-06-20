@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>448</width>
+    <height>113</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>天地图API秘钥管理</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButtonUpdateKey">
+     <property name="text">
+      <string>更新Key（将重启应用）</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEditKey"/>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>本应用使用天地图(www.tianditu.gov.cn)提供地理化信息服务，该服务需要注册API秘钥，请登陆网站-&gt;开发资源-&gt;地图API-&gt;申请Key，并将申请到的API秘钥填写至下方：</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonUpdateKey</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>pushButtonUpdateKeyClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>401</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>223</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButtonUpdateKeyClicked()</slot>
+ </slots>
+</ui>
