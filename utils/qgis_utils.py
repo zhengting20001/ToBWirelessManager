@@ -265,7 +265,7 @@ class CustomIdentifyTool(QgsMapToolIdentify):
         layers_to_identify = []
         # 遍历所有图层，不提供行政区和卫星底图的查询功能
         for layer in self.mapCanvas.layers():
-            if (layer.name() != '行政区') and ('底图' not in layer.name()) and ('临时1' not in layer.name()):
+            if (layer.name() != '行政区') and ('底图' not in layer.name()) and ('临时' not in layer.name()):
                 layers_to_identify.append(layer)
         results = self.identify(event.x(), event.y(), layers_to_identify,QgsMapToolIdentify.LayerSelection)
 

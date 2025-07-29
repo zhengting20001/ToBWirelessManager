@@ -29,7 +29,7 @@ class SqliteUtils:
     # 查询数据库取得项目、基站、小区数据，返回格式为数组嵌套
     # 项目list[项目，套餐级别，p（不显示，用于区分级别），基站列表list]
     # 基站列表list[基站名，区域，基站号（不显示，用于搜索），小区列表list]
-    # 小区列表list[CGI,频带，c（不显示，用于区分级别）]
+    # 小区列表list[CGI,频段，c（不显示，用于区分级别）]
 
     @staticmethod
     def get_project_tree_inner_text(conn):
@@ -40,7 +40,7 @@ class SqliteUtils:
         :return:项目、基站、小区数据，返回格式为数组嵌套
         :rtype:项目list[项目，套餐级别，p（不显示，用于区分级别），基站列表list]
                基站列表list[基站名，区域，基站号（不显示，用于搜索），小区列表list]
-               小区列表list[CGI,频带，c（不显示，用于区分级别）]
+               小区列表list[CGI,频段，c（不显示，用于区分级别）]
         """
         # # 打开SQLite数据库文件
         # conn = sqlite3.connect("data/toBDatabase.db")
@@ -54,7 +54,7 @@ class SqliteUtils:
             rows_gnb = cursor.fetchall()
             list_gnb = []
             for row_gnb in rows_gnb:
-                cursor.execute(f"SELECT CGI,频带 FROM 小区明细 WHERE 基站号='{row_gnb[0]}'")
+                cursor.execute(f"SELECT CGI,频段 FROM 小区明细 WHERE 基站号='{row_gnb[0]}'")
                 rows_cell = cursor.fetchall()
                 list_cell=[]
                 for row_cell in rows_cell:
@@ -161,7 +161,7 @@ class SqliteUtils:
         :rtype: list[dict]
         """
         cursor = conn.cursor()
-        cursor.execute(f"SELECT CGI,基站号,小区名,站型,行政区,无线厂家,频带,带宽 FROM 小区明细 WHERE 项目名称='{project_name}'")
+        cursor.execute(f"SELECT CGI,基站号,小区名,站型,行政区,无线厂家,频段,带宽 FROM 小区明细 WHERE 项目名称='{project_name}'")
         results = cursor.fetchall()
         cell_detail_return = []
         for result in results:
@@ -174,7 +174,7 @@ class SqliteUtils:
         cursor = conn.cursor()
         cgi_sql_token = ', '.join(['?'] * len(cgi_list))
         cursor.execute(
-            f"SELECT CGI,基站号,小区名,站型,行政区,无线厂家,频带,带宽 FROM 小区明细 WHERE CGI IN ({cgi_sql_token})",cgi_list)
+            f"SELECT CGI,基站号,小区名,站型,行政区,无线厂家,频段,带宽 FROM 小区明细 WHERE CGI IN ({cgi_sql_token})",cgi_list)
         results = cursor.fetchall()
         cell_detail_return = []
         for result in results:
@@ -230,4 +230,3 @@ class SqliteUtils:
 if __name__ == '__main__':
     su = SqliteUtils()
     conn = sqlite3.connect('../data/toBDatabase.db')
-    su.get_cell_detail_by_cgi(conn,['460-00-3283759-1','460-00-3283760-3'])

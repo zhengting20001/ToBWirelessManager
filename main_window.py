@@ -23,7 +23,6 @@
 
 import datetime
 import sqlite3,re
-import sys
 from io import BytesIO
 
 import docxtpl
@@ -1151,7 +1150,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ul_speed = float(use_case['上行业务速率'])*int(use_case['终端数量'])*float(use_case['并发概率'])/100
             dl_speed = float(use_case['下行业务速率']) * int(use_case['终端数量']) * float(use_case['并发概率']) / 100
 
-            print(f'UL:{float(use_case['上行业务速率'])*int(use_case['终端数量'])*float(use_case['并发概率'])/100}')
+            #print(f'UL:{float(use_case['上行业务速率'])*int(use_case['终端数量'])*float(use_case['并发概率'])/100}')
             if use_case['时延'] == '10':
                 if use_case['可靠性'] == '99.99%':
                     ratio_num = 0.39
